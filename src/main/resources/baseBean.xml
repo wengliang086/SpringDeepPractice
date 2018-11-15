@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="car1" class="com.my.test.spring.base.Car">
+        <constructor-arg value="BMW"/>
+        <constructor-arg value="shanghai"/>
+        <constructor-arg value="300000"/>
+    </bean>
+
+    <bean id="car2" class="com.my.test.spring.base.Car">
+        <constructor-arg value="ketty" type="java.lang.String"/>
+        <!--<constructor-arg value="changan" type="java.lang.String"/>-->
+        <constructor-arg type="java.lang.String">
+            <value><![CDATA[<ShangHai^>]]></value><!--这种方式来处理特殊字符-->
+        </constructor-arg>
+        <!--为了避免两个构造函数参数相似，明确给出参数类型-->
+        <!--<constructor-arg value="250" type="int"/>-->
+        <constructor-arg type="int">
+            <value>240</value>
+        </constructor-arg>
+    </bean>
+
+    <bean class="com.my.test.spring.base.Persion">
+        <constructor-arg value="phoenix"/>
+        <constructor-arg ref="car1"/>
+        <!--为级联属性赋值-->
+        <property name="car.maxSpeed" value="260"/>
+    </bean>
+
+    <bean id="persion2" class="com.my.test.spring.base.Persion2">
+        <property name="name" value="Jetty"/>
+        <property name="cars">
+            <!--集合属性赋值-->
+            <list>
+                <ref bean="car1"/>
+                <ref bean="car2"/>
+                <bean class="com.my.test.spring.base.Car">
+                    <constructor-arg value="Ford"/>
+                    <constructor-arg value="ChangAn"/>
+                    <constructor-arg value="230000" type="double"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="com.my.test.spring.base.Persion3">
+        <property name="name" value="Tom"/>
+        <property name="cars">
+            <!--集合属性赋值-->
+            <map>
+                <entry key="k1" value-ref="car1"/>
+                <entry key="k2" value-ref="car2"/>
+                <entry key="k3">
+                    <bean class="com.my.test.spring.base.Car">
+                        <constructor-arg value="Ford"/>
+                        <constructor-arg value="ChangAn"/>
+                        <constructor-arg value="238888" type="double"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--配置单例的集合Bean，以供多个Bean进行引用-->
+    <util:list id="cars">
+        <ref bean="car1"/>
+        <ref bean="car2"/>
+    </util:list>
+
+    <bean id="persion22" class="com.my.test.spring.base.Persion2">
+        <property name="name" value="Jetty"/>
+        <property name="cars" ref="cars"/>
+    </bean>
+
+    <bean class="com.my.test.spring.base.DataSource">
+        <property name="properties">
+            <props>
+                <prop key="user">root</prop>
+                <prop key="password">111111</prop>
+                <prop key="jdbcUrl">jdbc:mysql://test</prop>
+                <prop key="driverClass">com.mysql.jdbc.Driver</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
