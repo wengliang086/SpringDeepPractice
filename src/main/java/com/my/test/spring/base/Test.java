@@ -11,6 +11,7 @@ public class Test {
         Car car2 = (Car) applicationContext.getBean("car2");
         System.out.println(car1);
         System.out.println(car2);
+        System.out.println(applicationContext.getBean("car3"));
         // 带引用Bean
         Persion persion = applicationContext.getBean(Persion.class);
         System.out.println(persion);

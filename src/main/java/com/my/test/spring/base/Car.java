@@ -7,6 +7,9 @@ public class Car {
     private double price;
     private int maxSpeed;
 
+    public Car() {
+    }
+
     public Car(String brand, String corp, double price) {
         this.brand = brand;
         this.corp = corp;

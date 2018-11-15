@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="car" class="com.my.test.spring.base.Car" p:brand="BYD" p:corp="GuangZhou" p:price="120000"
+          p:maxSpeed="180"/>
+
+    <!--抽象bean不能被实例化，如果没有class属性，必须是抽象的-->
+    <bean class="com.my.test.spring.base.Persion" id="persion" p:name="Jetty" p:car-ref="car" abstract="true"/>
+    <!--自动装配-->
+    <bean class="com.my.test.spring.base.Persion" id="persion1" p:name="Jetty" autowire="byType"/>
+    <!--bean 配置的继承-->
+    <bean parent="persion" id="persion2" p:name="Sub of Jetty"/>
+    <!--spring允许用户通过depends-on属性指定bean前置依赖的bean,前置依赖的bean会在本bean实例化之前创建好-->
+    <bean class="com.my.test.spring.base.Persion" id="persion3" p:name="Jetty" depends-on="car">
+        <property name="car" ref="car"/>
+    </bean>
+</beans>

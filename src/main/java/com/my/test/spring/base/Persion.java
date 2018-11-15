@@ -5,6 +5,9 @@ public class Persion {
     private String name;
     private Car car;
 
+    public Persion() {
+    }
+
     public Persion(String name, Car car) {
         this.name = name;
         this.car = car;
