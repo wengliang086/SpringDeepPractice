@@ -14,7 +14,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessBeforeInitialization: " + bean + ", " + beanName);
+        System.out.println("postProcessAfterInitialization: " + bean + ", " + beanName);
         if (bean instanceof CycleBean) {
             ((CycleBean) bean).setId("偷梁换柱");
         }

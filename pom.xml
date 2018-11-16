@@ -41,6 +41,23 @@
             <artifactId>aopalliance</artifactId>
             <version>1.0</version>
         </dependency>
+        <!--数据库相关-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.45</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
         <!--
         <dependency>
             <groupId>org.springframework</groupId>
