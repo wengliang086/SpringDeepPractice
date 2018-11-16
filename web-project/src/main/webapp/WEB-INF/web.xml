@@ -7,10 +7,30 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+    <!--配置当前web应用的初始化参数-->
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/test</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>helloServlet</servlet-name>
         <servlet-class>com.my.test.web.servlet.HelloServlet</servlet-class>
+        <!--可以指定Servlet的创建时机，负数：第一次访问时创建，正数：启动时创建，越小越先创建-->
         <!--<load-on-startup>1</load-on-startup>-->
+        <!--配置初始化参数-->
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123456</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>helloServlet</servlet-name>
