@@ -8,15 +8,18 @@ public class Car {
     private int maxSpeed;
 
     public Car() {
+        System.out.println("-- car constructor invoked");
     }
 
     public Car(String brand, String corp, double price) {
+        System.out.println("-- car constructor invoked");
         this.brand = brand;
         this.corp = corp;
         this.price = price;
     }
 
     public Car(String brand, String corp, int maxSpeed) {
+        System.out.println("-- car constructor invoked");
         this.brand = brand;
         this.corp = corp;
         this.maxSpeed = maxSpeed;
